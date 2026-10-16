@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: lax
+spring:
+  application:
+    name: permission-governance
+  datasource:
+    url: jdbc:h2:file:./data/permission_demo;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+  sql:
+    init:
+      mode: always
+  jackson:
+    time-zone: Asia/Shanghai
+app:
+  permission:
+    application-code: sop
+    service-name: permission-governance
+logging:
+  level:
+    com.example.permissionhub: INFO

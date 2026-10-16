@@ -1,0 +1,27 @@
+{
+  "name": "permission-governance-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "element-plus": "^2.11.2",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1",
+    "@element-plus/icons-vue": "^2.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@types/node": "^22.18.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.2",
+    "vue-tsc": "^3.1.0"
+  },
+  "engines": { "node": ">=20.19.0" }
+}

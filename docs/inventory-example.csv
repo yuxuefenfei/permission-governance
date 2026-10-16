@@ -1,0 +1,2 @@
+source_file,line,candidate_permission_code,expression_preview
+com/example/permissionhub/controller/LegacyDemoController.java,15,sop:fireSafety:deviceInfo,"""hasAnyAuthority('sop:fireSafety:deviceInfo', '*:*:*'"
