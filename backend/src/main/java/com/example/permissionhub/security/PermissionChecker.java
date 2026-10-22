@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component("permissionChecker")
 @RequiredArgsConstructor
 public class PermissionChecker {
+
     private final SecurityRepository repository;
 
     public boolean hasPermission(String code) {

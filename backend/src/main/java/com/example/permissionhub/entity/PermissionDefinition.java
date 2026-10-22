@@ -1,14 +1,17 @@
 package com.example.permissionhub.entity;
 
+import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
 import lombok.Getter;
 import lombok.Setter;
-import com.mybatisflex.annotation.Column;
+
 import java.time.LocalDateTime;
 
-/** permission_definitions 持久化映射，不作为公开 API 响应。 */
+/**
+ * permission_definitions 持久化映射，不作为公开 API 响应。
+ */
 @Getter
 @Setter
 @Table("permission_definitions")

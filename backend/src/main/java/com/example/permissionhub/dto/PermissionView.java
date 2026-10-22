@@ -5,10 +5,13 @@ import com.example.permissionhub.enums.PermissionStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-/** 权限资源池只读模型，端点是一对多关系。 */
+/**
+ * 权限资源池只读模型，端点是一对多关系。
+ */
 @Getter
 @Builder
 public class PermissionView {
@@ -22,5 +25,4 @@ public class PermissionView {
     private LocalDateTime lastSeenAt;
     @Setter
     private List<EndpointView> endpoints;
-
 }

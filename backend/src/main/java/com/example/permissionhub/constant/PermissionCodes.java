@@ -1,10 +1,14 @@
 package com.example.permissionhub.constant;
 
+import lombok.Value;
+
 /**
  * 权限码唯一的 Java 定义位置；不要在枚举、SQL、Controller 中再次手写同一权限码。
  * @RequirePermission 提供中文名称等业务元数据，扫描后进入权限资源池。
  */
-public final class PermissionCodes {
+@Value
+public class PermissionCodes {
+
     private PermissionCodes() { }
 
     public static final String DASHBOARD_READ = "system:dashboard:read";

@@ -5,10 +5,13 @@ import com.example.permissionhub.repository.DashboardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/** 管理台概览查询。 */
+/**
+ * 管理台概览查询。
+ */
 @Service
 @RequiredArgsConstructor
 public class DashboardService {
+
     private final DashboardRepository repository;
 
     public DashboardOverview overview() {

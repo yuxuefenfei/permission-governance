@@ -1,6 +1,9 @@
 package com.example.permissionhub.repository;
 
-import com.example.permissionhub.dto.*;
+import com.example.permissionhub.dto.EndpointView;
+import com.example.permissionhub.dto.PermissionView;
+import com.example.permissionhub.dto.ScannedEndpoint;
+import com.example.permissionhub.dto.ScannedPermission;
 import com.example.permissionhub.entity.PermissionDefinition;
 import com.example.permissionhub.entity.PermissionEndpoint;
 import com.example.permissionhub.enums.PermissionKind;
@@ -13,20 +16,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+
 import static com.example.permissionhub.entity.table.PermissionDefinitionTableDef.PERMISSION_DEFINITION;
 import static com.example.permissionhub.entity.table.PermissionEndpointTableDef.PERMISSION_ENDPOINT;
 import static com.mybatisflex.core.query.QueryMethods.lower;
 
-/** 权限定义与端点持久化；同步事务与业务校验由服务负责。 */
+/**
+ * 权限定义与端点持久化；同步事务与业务校验由服务负责。
+ */
 @Repository
 @RequiredArgsConstructor
 public class PermissionRepository {
+
     private final PermissionDefinitionMapper definitions;
     private final PermissionEndpointMapper endpoints;
 
     public int updateCodeDefinition(ScannedPermission definition, String appCode, String serviceName) {
         PermissionDefinition entity = from(definition, appCode, serviceName);
-        entity = UpdateWrapper.of(entity).setRaw(PERMISSION_DEFINITION.LAST_SEEN_AT, "CURRENT_TIMESTAMP").toEntity();
+        entity = UpdateWrapper.of(entity)
+                .setRaw(PERMISSION_DEFINITION.LAST_SEEN_AT, "CURRENT_TIMESTAMP").toEntity();
         return definitions.updateByCondition(entity, PERMISSION_DEFINITION.CODE.eq(definition.code())
                 .and(PERMISSION_DEFINITION.APP_CODE.eq(appCode)).and(PERMISSION_DEFINITION.SOURCE.eq("CODE")));
     }

@@ -1,7 +1,7 @@
 package com.example.permissionhub.service;
 
-import com.example.permissionhub.dto.ScannedPermission;
 import com.example.permissionhub.dto.ScannedEndpoint;
+import com.example.permissionhub.dto.ScannedPermission;
 import com.example.permissionhub.enums.PermissionKind;
 import com.example.permissionhub.security.RequirePermission;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,7 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,7 @@ import java.util.regex.Pattern;
 @Service
 @RequiredArgsConstructor
 public class PermissionScanService {
+
     private static final Pattern CODE_PATTERN = Pattern.compile("^[a-zA-Z][a-zA-Z0-9]*(?::[a-zA-Z0-9]+){2,6}$");
     private final RequestMappingHandlerMapping handlerMapping;
 
@@ -42,7 +44,7 @@ public class PermissionScanService {
                     : mapping.getPathPatternsCondition().getPatternValues();
             var methods = mapping.getMethodsCondition().getMethods().isEmpty()
                     ? Set.of(RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
-                            RequestMethod.PATCH, RequestMethod.DELETE)
+                    RequestMethod.PATCH, RequestMethod.DELETE)
                     : mapping.getMethodsCondition().getMethods();
             String handlerName = handler.getBeanType().getSimpleName() + "#" + handler.getMethod().getName();
             for (String pattern : patterns) {
@@ -59,16 +61,23 @@ public class PermissionScanService {
         final String code, name, module, description;
         final PermissionKind kind;
         final Set<ScannedEndpoint> endpoints = new LinkedHashSet<>();
+
         MutablePermission(String code, String name, String module,
                           PermissionKind kind, String description) {
-            this.code=code; this.name=name; this.module=module; this.kind=kind; this.description=description;
+            this.code = code;
+            this.name = name;
+            this.module = module;
+            this.kind = kind;
+            this.description = description;
         }
+
         void assertCompatible(RequirePermission annotation) {
             if (!name.equals(annotation.name()) || !module.equals(annotation.module())
                     || kind != annotation.kind() || !description.equals(annotation.description())) {
                 throw new IllegalStateException("同一权限码的元数据不一致：" + code);
             }
         }
+
         ScannedPermission toImmutable() {
             return new ScannedPermission(code, name, module, kind, description,
                     endpoints.stream().sorted(Comparator.comparing(ScannedEndpoint::path)

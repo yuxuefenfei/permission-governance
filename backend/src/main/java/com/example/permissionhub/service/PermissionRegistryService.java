@@ -10,12 +10,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-/** 权限同步与校验；同步只更新代码托管的元数据，不触碰角色与菜单授权。 */
+/**
+ * 权限同步与校验；同步只更新代码托管的元数据，不触碰角色与菜单授权。
+ */
 @Service
 @RequiredArgsConstructor
 public class PermissionRegistryService {
+
     private final PermissionRepository repository;
     private final PermissionScanService scanner;
     private final PermissionProperties properties;

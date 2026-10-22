@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** 当前用户与实时权限查询。 */
+/**
+ * 当前用户与实时权限查询。
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+
     private final SecurityRepository repository;
 
     public CurrentUser currentUser(String username) {

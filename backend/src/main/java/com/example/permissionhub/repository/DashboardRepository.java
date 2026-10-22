@@ -11,10 +11,13 @@ import org.springframework.stereotype.Repository;
 
 import static com.example.permissionhub.entity.table.PermissionDefinitionTableDef.PERMISSION_DEFINITION;
 
-/** 使用 Mapper 的数据库 COUNT 查询，避免加载列表后统计。 */
+/**
+ * 使用 Mapper 的数据库 COUNT 查询，避免加载列表后统计。
+ */
 @Repository
 @RequiredArgsConstructor
 public class DashboardRepository {
+
     private final PermissionDefinitionMapper permissions;
     private final SysRoleMapper roles;
     private final SysUserMapper users;

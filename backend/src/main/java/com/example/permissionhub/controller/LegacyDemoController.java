@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class LegacyDemoController {
+
     @GetMapping("/api/demo/legacy-permission-check")
     @PreAuthorize("hasAnyAuthority('sop:fireSafety:deviceInfo', '*:*:*')")
     public ApiResponse<String> check() {

@@ -11,14 +11,21 @@ import com.mybatisflex.core.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static com.example.permissionhub.entity.table.SysUserTableDef.SYS_USER;
 import static com.example.permissionhub.entity.table.UserRoleTableDef.USER_ROLE;
 
-/** 用户持久化；查询列表不加载密码散列。 */
+/**
+ * 用户持久化；查询列表不加载密码散列。
+ */
 @Repository
 @RequiredArgsConstructor
 public class UserRepository {
+
     private final SysUserMapper users;
     private final UserRoleMapper bindings;
 

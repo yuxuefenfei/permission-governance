@@ -8,12 +8,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 import static com.example.permissionhub.entity.table.AuditLogTableDef.AUDIT_LOG;
 
-/** 审计持久化；保留最近 200 条查询及稳定排序。 */
+/**
+ * 审计持久化；保留最近 200 条查询及稳定排序。
+ */
 @Repository
 @RequiredArgsConstructor
 public class AuditRepository {
+
     private final AuditLogMapper mapper;
 
     public void insert(String actor, String action, String resourceType, String resourceId, String detail) {

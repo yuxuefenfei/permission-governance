@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** 将敏感业务变更写入数据库；密码、令牌等敏感值不得写入 detail。 */
+/**
+ * 将敏感业务变更写入数据库；密码、令牌等敏感值不得写入 detail。
+ */
 @Service
 @RequiredArgsConstructor
 public class AuditService {
+
     private final AuditRepository repository;
 
     public void record(String action, String resourceType, String resourceId, String detail) {

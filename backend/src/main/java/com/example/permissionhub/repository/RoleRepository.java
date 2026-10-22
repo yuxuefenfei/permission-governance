@@ -10,14 +10,21 @@ import com.mybatisflex.core.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static com.example.permissionhub.entity.table.RolePermissionTableDef.ROLE_PERMISSION;
 import static com.example.permissionhub.entity.table.SysRoleTableDef.SYS_ROLE;
 
-/** 角色持久化，角色权限独立于菜单绑定。 */
+/**
+ * 角色持久化，角色权限独立于菜单绑定。
+ */
 @Repository
 @RequiredArgsConstructor
 public class RoleRepository {
+
     private final SysRoleMapper roles;
     private final RolePermissionMapper bindings;
 

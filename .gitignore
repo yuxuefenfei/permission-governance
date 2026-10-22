@@ -6,3 +6,4 @@ backend/data/
 .env.local
 .idea/
 .vscode/
+/data/*.db

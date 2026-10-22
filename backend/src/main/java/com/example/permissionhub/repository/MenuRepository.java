@@ -12,14 +12,21 @@ import com.mybatisflex.core.util.UpdateEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static com.example.permissionhub.entity.table.MenuPermissionTableDef.MENU_PERMISSION;
 import static com.example.permissionhub.entity.table.SysMenuTableDef.SYS_MENU;
 
-/** 菜单与权限绑定的数据访问；批量加载绑定，避免逐菜单查询。 */
+/**
+ * 菜单与权限绑定的数据访问；批量加载绑定，避免逐菜单查询。
+ */
 @Repository
 @RequiredArgsConstructor
 public class MenuRepository {
+
     private final SysMenuMapper menus;
     private final MenuPermissionMapper bindings;
 

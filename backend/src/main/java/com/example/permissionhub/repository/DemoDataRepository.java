@@ -6,8 +6,8 @@ import com.example.permissionhub.entity.SysRole;
 import com.example.permissionhub.entity.SysUser;
 import com.example.permissionhub.entity.UserRole;
 import com.example.permissionhub.enums.MenuType;
-import com.example.permissionhub.mapper.SysRoleMapper;
 import com.example.permissionhub.mapper.SysMenuMapper;
+import com.example.permissionhub.mapper.SysRoleMapper;
 import com.example.permissionhub.mapper.SysUserMapper;
 import com.example.permissionhub.mapper.UserRoleMapper;
 import com.mybatisflex.core.query.QueryWrapper;
@@ -15,12 +15,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 import static com.example.permissionhub.entity.table.SysRoleTableDef.SYS_ROLE;
 
-/** 本地演示种子数据，使用 Mapper 回填主键，仅在空表初始化。 */
+/**
+ * 本地演示种子数据，使用 Mapper 回填主键，仅在空表初始化。
+ */
 @Repository
 @RequiredArgsConstructor
 public class DemoDataRepository {
+
     private final SysRoleMapper roles;
     private final SysUserMapper users;
     private final UserRoleMapper userRoles;

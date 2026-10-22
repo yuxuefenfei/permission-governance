@@ -6,7 +6,9 @@ import com.mybatisflex.annotation.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-/** permission_endpoints 持久化映射，不作为公开 API 响应。 */
+/**
+ * permission_endpoints 持久化映射，不作为公开 API 响应。
+ */
 @Getter
 @Setter
 @Table("permission_endpoints")

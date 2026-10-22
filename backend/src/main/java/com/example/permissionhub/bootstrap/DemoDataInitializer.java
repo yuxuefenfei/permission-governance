@@ -15,6 +15,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 @Component
 @RequiredArgsConstructor
 public class DemoDataInitializer {
+
     private final PermissionRegistryService registry;
     private final DemoDataRepository repository;
     private final PasswordEncoder encoder;
@@ -26,7 +27,10 @@ public class DemoDataInitializer {
         transactions.executeWithoutResult(tx -> {
             repository.seedRolesAndMenus();
             if (!repository.hasUsers()) {
-                repository.seedUsers(encoder.encode("Admin@123456"), encoder.encode("Operator@123456"));
+                repository.seedUsers(
+                        encoder.encode("Admin@123456"),
+                        encoder.encode("Operator@123456")
+                );
             }
         });
         log.info("演示数据已就绪；默认账号仅供本地学习使用，部署前务必修改或删除");

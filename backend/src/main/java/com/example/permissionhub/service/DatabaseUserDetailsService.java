@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-/** 登录时装载传统 Authority 快照，迁移旧 @PreAuthorize 不受影响。 */
+/**
+ * 登录时装载传统 Authority 快照，迁移旧 @PreAuthorize 不受影响。
+ */
 @Service
 @RequiredArgsConstructor
 public class DatabaseUserDetailsService implements UserDetailsService {
+
     private final SecurityRepository repository;
 
     @Override

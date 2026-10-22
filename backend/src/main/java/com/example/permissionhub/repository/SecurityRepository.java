@@ -10,16 +10,20 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.example.permissionhub.entity.table.PermissionDefinitionTableDef.PERMISSION_DEFINITION;
+import static com.example.permissionhub.entity.table.RolePermissionTableDef.ROLE_PERMISSION;
 import static com.example.permissionhub.entity.table.SysUserTableDef.SYS_USER;
 import static com.example.permissionhub.entity.table.UserRoleTableDef.USER_ROLE;
-import static com.example.permissionhub.entity.table.RolePermissionTableDef.ROLE_PERMISSION;
-import static com.example.permissionhub.entity.table.PermissionDefinitionTableDef.PERMISSION_DEFINITION;
 import static com.mybatisflex.core.query.QueryMethods.distinct;
 
-/** 认证与实时授权查询，凭据实体只在内部使用。 */
+/**
+ * 认证与实时授权查询，凭据实体只在内部使用。
+ */
 @Repository
 @RequiredArgsConstructor
 public class SecurityRepository {
+
     private final SysUserMapper users;
 
     public Optional<SysUser> findAccount(String username) {
@@ -46,7 +50,7 @@ public class SecurityRepository {
     public List<String> activeCodes(String username) {
         if (username == null || username.isBlank()) return List.of();
         return users.selectObjectListByQueryAs(grantsQuery(username)
-                .select(distinct(ROLE_PERMISSION.PERMISSION_CODE)).orderBy(ROLE_PERMISSION.PERMISSION_CODE.asc()),
+                        .select(distinct(ROLE_PERMISSION.PERMISSION_CODE)).orderBy(ROLE_PERMISSION.PERMISSION_CODE.asc()),
                 String.class);
     }
 

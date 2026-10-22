@@ -20,11 +20,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-/** 登录、用户信息和 CSRF 初始化入口。注销交给 Spring Security LogoutFilter。 */
+/**
+ * 登录、用户信息和 CSRF 初始化入口。注销交给 Spring Security LogoutFilter。
+ */
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
+
     private final AuthenticationManager authenticationManager;
     private final HttpSessionSecurityContextRepository contextRepository;
     private final AuthService authService;
@@ -36,7 +39,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ApiResponse<CurrentUser> login(@Valid @RequestBody LoginRequest body,
-                                           HttpServletRequest request, HttpServletResponse response) {
+                                          HttpServletRequest request, HttpServletResponse response) {
         var authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken.unauthenticated(body.username(), body.password()));
         // 主动认证后轮换 session id，避免会话固定攻击。
@@ -48,7 +51,9 @@ public class AuthController {
         return ApiResponse.ok(authService.currentUser(authentication.getName()));
     }
 
-    /** 返回当前有效权限码，供前端控制按钮展示；并非最终的安全校验。 */
+    /**
+     * 返回当前有效权限码，供前端控制按钮展示；并非最终的安全校验。
+     */
     @GetMapping("/grants")
     public ApiResponse<List<String>> grants() {
         return ApiResponse.ok(authService.grants(currentUsername()));
